@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Add Classroom</h2>
+
+<form method="POST">
+    <label>Classroom Name:</label>
+    <input type="text" name="name" required>
+    <input type="submit" value="Add">
+</form>
+
+<hr>
+
+<h3>Existing Classrooms</h3>
+<table border="1" cellpadding="8">
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Action</th>
+    </tr>
+    {% for c in classrooms %}
+    <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ c.name }}</td>
+        <td>
+            <form method="POST" action="{{ url_for('delete_classroom', classroom_id=c.id) }}"
+                  onsubmit="return confirm('Are you sure you want to delete this classroom?');"
+                  style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<p><a href="/">Back</a></p>
+{% endblock %}

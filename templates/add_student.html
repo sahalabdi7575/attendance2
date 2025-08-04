@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Add Student</h1>
+<form method="POST">
+    <label>Student Name:</label>
+    <input type="text" name="name" required>
+    <label>Select Class:</label>
+    <select name="classroom_id" required>
+        {% for c in classrooms %}
+        <option value="{{ c.id }}">{{ c.name }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Add">
+</form>
+<p><a href="/">Back</a></p>
+{% endblock %}

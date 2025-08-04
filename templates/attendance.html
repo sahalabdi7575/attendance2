@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Mark Attendance</h1>
+<form method="GET">
+    <label>Select Class:</label>
+    <select name="classroom_id" onchange="this.form.submit()">
+        <option value="">-- Select Class --</option>
+        {% for c in classrooms %}
+        <option value="{{ c.id }}" {% if selected_class_id == c.id|string %}selected{% endif %}>{{ c.name }}</option>
+        {% endfor %}
+    </select>
+</form>
+
+{% if students %}
+<form method="POST">
+    <input type="hidden" name="classroom_id" value="{{ selected_class_id }}">
+    <label>Date:</label>
+    <input type="date" name="date" value="{{ today }}" required>
+    <table border="1">
+        <tr><th>Student</th><th>Present</th></tr>
+        {% for s in students %}
+        <tr>
+            <td>{{ s.name }}</td>
+            <td><input type="checkbox" name="present" value="{{ s.id }}"></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <input type="submit" value="Submit">
+</form>
+{% endif %}
+<p><a href="/">Back</a></p>
+{% endblock %}

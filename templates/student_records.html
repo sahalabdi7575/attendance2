@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Attendance for {{ student.name }}</h1>
+<p>✅ Present: {{ present_count }}</p>
+<p>❌ Absent: {{ absent_count }}</p>
+
+<table border="1">
+    <tr><th>Date</th><th>Status</th></tr>
+    {% for record in records %}
+    <tr><td>{{ record.date }}</td><td>{{ record.status }}</td></tr>
+    {% else %}
+    <tr><td colspan="2">No attendance records.</td></tr>
+    {% endfor %}
+</table>
+<p><a href="/">Back</a></p>
+{% endblock %}

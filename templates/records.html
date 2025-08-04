@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Attendance Records</h1>
+
+<form method="POST">
+    <label for="classroom">Filter by Classroom:</label>
+    <select name="classroom_id">
+        <option value="">-- All Classrooms --</option>
+        {% for c in classrooms %}
+            <option value="{{ c.id }}" {% if selected_classroom_id == c.id|string %}selected{% endif %}>{{ c.name }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="date">Filter by Date:</label>
+    <input type="date" name="date" value="{{ selected_date }}">
+    <input type="submit" value="Filter">
+</form>
+
+
+
+<h3>Individual Student Summary</h3>
+<table border="1">
+    <tr><th>Student</th><th>✅ Present</th><th>❌ Absent</th></tr>
+    {% for name, stats in student_stats.items() %}
+    <tr><td>{{ name }}</td><td>{{ stats['Present'] }}</td><td>{{ stats['Absent'] }}</td></tr>
+    {% endfor %}
+</table>
+
+<p><a href="/">Back</a></p>
+{% endblock %}

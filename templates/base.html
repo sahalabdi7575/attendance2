@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Student Attendance management system</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <center>
+        <img src="{{ url_for('static', filename='logo.jpg') }}" alt="PSU Logo" width="200" height="200">
+        <h1 style="color: blue; font-size: 30px;">Student Attendance management system</h1>
+    </center>
+    <nav>
+        <a href="/">Home</a> |
+        <a href="/add">Add Student</a> |
+        <a href="/upload_students">Upload Students</a> |
+        <a href="/add_classroom">Add Classroom</a> |
+        <a href="/attendance">Mark Attendance</a> |
+        <a href="/records">View Records</a>
+    </nav>
+    <hr style="background-color: blue; height: 2px;">
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+          {% for category, message in messages %}
+            <li style="color: {% if category == 'error' %}red{% else %}green{% endif %};">
+              {{ message }}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+    <footer>
+      <hr style="background-color: blue; height: 2px;">
+     <center>
+       <p style="background-color: green; color: white; font-size: 24px;  padding: 20px; margin-top: 0;">&copy;<span id="year"></span> Omar samater secondary school | All Rights Reserved</p>
+     </center>
+      <script>
+        document.getElementById("year").textContent=new Date().getFullYear()
+      </script>
+    </footer>
+</body>
+</html>
