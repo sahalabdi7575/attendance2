@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title> Student Attendance management system</title>
-    <link rel="stylesheet" href="/static/style.css">
+ <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}student attendance management system{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
 </head>
 <body>
     <center>
