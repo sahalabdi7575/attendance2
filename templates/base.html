@@ -10,12 +10,17 @@
         <h1 style="color: blue; font-size: 30px;">Student Attendance management system</h1>
     </center>
     <nav>
-        <a href="/">Home</a> |
-        <a href="/add">Add Student</a> |
-        <a href="/upload_students">Upload Students</a> |
-        <a href="/add_classroom">Add Classroom</a> |
-        <a href="/attendance">Mark Attendance</a> |
+      <button class="menu-toggle">☰</button>
+      <div class="nav-links">
+
+      
+        <a href="/" class="act">Home</a> 
+        <a href="/add">Add Student</a> 
+        <a href="/upload_students">Upload Students</a> 
+        <a href="/add_classroom">Add Classroom</a> 
+        <a href="/attendance">Mark Attendance</a> 
         <a href="/records">View Records</a>
+        </div>
     </nav>
     <hr style="background-color: blue; height: 2px;">
 
@@ -41,5 +46,16 @@
         document.getElementById("year").textContent=new Date().getFullYear()
       </script>
     </footer>
+    <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const toggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    toggle.addEventListener('click', function () {
+      navLinks.classList.toggle('active');
+    });
+  });
+</script>
+
 </body>
 </html>
